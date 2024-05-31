@@ -1,0 +1,20 @@
+﻿@page
+@model RentACarProject.Web.Pages.Cars.IndexModel
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<RentACarProject.Localization.RentACarProjectResource> L
+@section scripts
+{
+    <abp-script src="/Pages/Cars/Index.js" />
+}
+@{
+
+}
+
+<abp-card>
+    <abp-card-header>
+        <h2>@L["Cars"]</h2>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="CarsTable"></abp-table>
+    </abp-card-body>
+</abp-card>
