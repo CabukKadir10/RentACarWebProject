@@ -1,5 +1,5 @@
-﻿using RentACarProject.Dtos.Models;
-using RentACarProject.Entities.Models;
+﻿using RentACarProject.Entities.Models;
+using RentACarProject.Models.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,18 +11,18 @@ using Volo.Abp.Domain.Repositories;
 
 namespace RentACarProject.Models
 {
-    public class ModelAppService : CrudAppService<Model, ModelDto, int, PagedAndSortedResultRequestDto, ModelCreateDto, ModelUpdateDto>, IModelAppService
+    public class ModelAppService : CrudAppService<Model, ModelDto, int, PagedAndSortedResultRequestDto, CreatedModelDto, UpdatedModelDto>, IModelAppService
     {
         public ModelAppService(IRepository<Model, int> repository) : base(repository)
         {
         }
 
-        public override Task<ModelDto> CreateAsync(ModelCreateDto input)
+        public override Task<ModelDto> CreateAsync(CreatedModelDto input)
         {
             return base.CreateAsync(input);
         }
 
-        public override Task<ModelDto> UpdateAsync(int id, ModelUpdateDto input)
+        public override Task<ModelDto> UpdateAsync(int id, UpdatedModelDto input)
         {
             return base.UpdateAsync(id, input);
         }

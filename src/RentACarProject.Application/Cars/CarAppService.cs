@@ -1,4 +1,4 @@
-﻿using RentACarProject.Dtos.Cars;
+﻿using RentACarProject.Cars.Dtos;
 using RentACarProject.Entities.Cars;
 using System;
 using System.Collections.Generic;
@@ -11,18 +11,18 @@ using Volo.Abp.Domain.Repositories;
 
 namespace RentACarProject.Cars
 {
-    public class CarAppService : CrudAppService<Car, CarDto, int, PagedAndSortedResultRequestDto, CarCreateDto, CarUpdateDto>, ICarAppService
+    public class CarAppService : CrudAppService<Car, CarDto, int, PagedAndSortedResultRequestDto, CreatedCarDto, UpdatedCarDto>, ICarAppService
     {
         public CarAppService(IRepository<Car, int> repository) : base(repository)
         {
         }
 
-        public override Task<CarDto> CreateAsync(CarCreateDto input)
+        public override Task<CarDto> CreateAsync(CreatedCarDto input)
         {
             return base.CreateAsync(input);
         }
 
-        public override Task<CarDto> UpdateAsync(int id, CarUpdateDto input)
+        public override Task<CarDto> UpdateAsync(int id, UpdatedCarDto input)
         {
             return base.UpdateAsync(id, input);
         }
