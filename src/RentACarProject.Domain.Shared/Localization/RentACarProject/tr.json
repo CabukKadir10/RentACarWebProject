@@ -23,13 +23,25 @@
     "Menu:Cars": "Araç Yönetimi",
     "Menu:CarList": "Araç Listeleme",
     "Menu:CarsAdd": "Araç Ekleme",
-    "Car": "Etiket",
-    "CarList": "Etiket Listesi",
-    "CarAdd": "Etiket Ekle",
-    "CarUpdate": "Etiket Güncelle",
-    "CarName": "Etiket Adı",
-    "CarDeletionConfirmationMessage": "'{0}' etiketini silmek istediğinizden emin misiniz?",
-    "CarAddSuccess": "Yeni Etiket Eklendi"
+    "Car": "Car",
+    "CarList": "Car Listesi",
+    "CarAdd": "Car Ekle",
+    "CarUpdate": "Car Güncelle",
+    "CarName": "Car Adı",
+    "CarDeletionConfirmationMessage": "'{0}' Car ı silmek istediğinizden emin misiniz?",
+    "CarAddSuccess": "Yeni Etiket Eklendi",
+
+    //Brand
+    "Menu:Brand": "Brand Yönetimi",
+    "Menu:BrandList": "Brand Listeleme",
+    "Menu:BrandAdd": "Brand Ekleme",
+    "Brand": "Brand",
+    "BrandList": "Brand Listesi",
+    "BrandAdd": "Brand Ekle",
+    "BrandUpdate": "Brand Güncelle",
+    "BrandName": "Brand Adı",
+    "BrandDeletionConfirmationMessage": "'{0}' Brandini silmek istediğinizden emin misiniz?",
+    "BrandAddSuccess": "Yeni Brand Eklendi"
 
   }
 }

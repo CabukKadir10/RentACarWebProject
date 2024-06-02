@@ -37,23 +37,22 @@ public class RentACarProjectMenuContributor : IMenuContributor
         );
 
         context.Menu.AddItem(
-       new ApplicationMenuItem("Menu:Cars", l["Menu:Cars"], icon: "fa fa-newspaper-o")
-       .RequirePermissions(RentACarProjectPermissions.Car.Default)
-           .AddItem(new ApplicationMenuItem(
-               name: "Menu:CarList",
-               displayName: l["Menu:CarList"],
-               icon: "fa fa-list",
-               url: "/Cars/Index")
-           .RequirePermissions(RentACarProjectPermissions.Car.List)
-           )
-           .AddItem(new ApplicationMenuItem(
-               name: "Menu:CarsAdd",
-               displayName: l["Menu:CarsAdd"],
-               icon: "fa fa-plus",
-               url: "/Cars/Add")
-           .RequirePermissions(RentACarProjectPermissions.Car.Create)
-           )
-      );
+           new ApplicationMenuItem(
+                name: "Menu:Cars",
+                displayName: l["Menu:Cars"],
+                icon: "fa fa-cars",
+                url: "/Cars"
+            ).RequirePermissions(RentACarProjectPermissions.Car.Default)
+       );
+
+        context.Menu.AddItem(
+           new ApplicationMenuItem(
+                name: "Menu:Brand",
+                displayName: l["Menu:Brand"],
+                icon: "fa fa-brands",
+                url: "/Brand"
+            ).RequirePermissions(RentACarProjectPermissions.Brand.Default)
+       );
 
 
         if (MultiTenancyConsts.IsEnabled)

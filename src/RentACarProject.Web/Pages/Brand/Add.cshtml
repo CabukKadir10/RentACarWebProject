@@ -1,0 +1,19 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using RentACarProject.Localization;
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal;
+@model RentACarProject.Web.Pages.Brand.AddModel
+@inject IHtmlLocalizer<RentACarProjectResource> L
+@{
+    Layout = null;
+}
+<form method="post" action="@Url.Page("/Tag/Add")">
+    @Html.AntiForgeryToken()
+    <abp-modal>
+        <abp-modal-header title="@L["TagAdd"].Value"></abp-modal-header>
+        <abp-modal-body>
+            <abp-input asp-for="CreatedBrandDto.Name"></abp-input>
+        </abp-modal-body>
+        <abp-modal-footer buttons="@AbpModalButtons.Save | @AbpModalButtons.Cancel"></abp-modal-footer>
+    </abp-modal>
+</form>

@@ -1,0 +1,47 @@
+﻿@page
+@using Microsoft.AspNetCore.Authorization;
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using RentACarProject.Localization;
+@using RentACarProject.Permissions;
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout;
+@model RentACarProject.Web.Pages.Brand.IndexModel
+@inject IHtmlLocalizer<RentACarProjectResource> L
+@inject IAuthorizationService Authorization
+@inject IPageLayout PageLayout
+@{
+    PageLayout.Content.Title = L["Menu:Brand"].Value;
+}
+@Html.AntiForgeryToken()
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["BrandList"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-end">
+                @if (await Authorization.IsGrantedAsync(RentACarProjectPermissions.Brand.Create))//Yetkiye Bağlayabiliriz
+                {
+                    <abp-button id="BrandAddButton"
+                                text="@L["BrandAdd"].Value"
+                                icon="plus"
+                                button-type="Primary" />
+                }
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="BrandTable">
+            <thead>
+                <tr>
+                    <th width="25%"></th>
+
+                    <th></th>
+                </tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>
+
+@section scripts {
+    <abp-script src="/Pages/Brand/Brand.js" />
+}

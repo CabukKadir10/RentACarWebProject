@@ -1,0 +1,21 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using RentACarProject.Localization;
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal;
+@model RentACarProject.Web.Pages.Brand.UpdateModel
+@inject IHtmlLocalizer<RentACarProjectResource> L
+@{
+    Layout = null;
+}
+
+<form method="post" action="@Url.Page("/Brand/Update")">
+    @Html.AntiForgeryToken()
+    <abp-modal>
+        <abp-modal-header title="@L["BrandUpdate"].Value"></abp-modal-header>
+        <abp-modal-body>
+            <abp-input asp-for="UpdatedBrandDto.Name"></abp-input>
+            <abp-input asp-for="Id" type="hidden"></abp-input>
+        </abp-modal-body>
+        <abp-modal-footer buttons="@AbpModalButtons.Save | @AbpModalButtons.Cancel"></abp-modal-footer>
+    </abp-modal>
+</form>
