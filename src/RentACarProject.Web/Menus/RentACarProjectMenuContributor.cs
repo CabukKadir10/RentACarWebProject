@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using RentACarProject.Localization;
 using RentACarProject.MultiTenancy;
+using RentACarProject.Permissions;
+using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.Identity.Web.Navigation;
 using Volo.Abp.SettingManagement.Web.Navigation;
 using Volo.Abp.TenantManagement.Web.Navigation;
@@ -35,18 +37,24 @@ public class RentACarProjectMenuContributor : IMenuContributor
         );
 
         context.Menu.AddItem(
-        new ApplicationMenuItem(
-        "RentACar",
-        l["Menu:RentACar"],
-        icon: "fa fa-book"
-        ).AddItem(
-        new ApplicationMenuItem(
-            "RentACar.Cars",
-            l["Menu:Cars"],
-            url: "/Cars"
-            )
-        )
-    );
+       new ApplicationMenuItem("Menu:Cars", l["Menu:Cars"], icon: "fa fa-newspaper-o")
+       .RequirePermissions(RentACarProjectPermissions.Car.Default)
+           .AddItem(new ApplicationMenuItem(
+               name: "Menu:CarList",
+               displayName: l["Menu:CarList"],
+               icon: "fa fa-list",
+               url: "/Cars/Index")
+           .RequirePermissions(RentACarProjectPermissions.Car.List)
+           )
+           .AddItem(new ApplicationMenuItem(
+               name: "Menu:CarsAdd",
+               displayName: l["Menu:CarsAdd"],
+               icon: "fa fa-plus",
+               url: "/Cars/Add")
+           .RequirePermissions(RentACarProjectPermissions.Car.Create)
+           )
+      );
+
 
         if (MultiTenancyConsts.IsEnabled)
         {
