@@ -41,7 +41,23 @@
     "BrandUpdate": "Brand Güncelle",
     "BrandName": "Brand Adı",
     "BrandDeletionConfirmationMessage": "'{0}' Brandini silmek istediğinizden emin misiniz?",
-    "BrandAddSuccess": "Yeni Brand Eklendi"
+    "BrandAddSuccess": "Yeni Brand Eklendi",
+    "Name": "İsim",
+    "AddSuccess": "başarıyla kaydedildi",
+    "UpdateSuccess": "başarıyla güncellendi",
+
+    //Color
+    //Brand
+    "Menu:Color": "Color Yönetimi",
+    "Menu:ColorList": "Color Listeleme",
+    "Menu:ColorAdd": "Color Ekleme",
+    "Color": "Color",
+    "ColorList": "Color Listesi",
+    "ColorAdd": "Color Ekle",
+    "ColorUpdate": "Color Güncelle",
+    "ColorName": "Color Adı",
+    "ColorDeletionConfirmationMessage": "'{0}' Colorini silmek istediğinizden emin misiniz?",
+    "ColorAddSuccess": "Yeni Color Eklendi"
 
   }
 }

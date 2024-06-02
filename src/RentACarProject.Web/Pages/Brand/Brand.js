@@ -1,91 +1,79 @@
-var L = abp.localization.getResource('NovaHaber');
+var L = abp.localization.getResource('RentACarProject');
 
 $(function () {
-    var _brandAppService = novaHaber._brandAppService;
+    var _colorAppService = novaHaber.appServices.colors.color;
 
-    var brandAddModal = new abp.ModalManager({
-        viewUrl: '/Brand/Add'
+    var colorAddModal = new abp.ModalManager({
+        viewUrl: '/Color/Add'
     });
-    var brandEditModal = new abp.ModalManager({
-        viewUrl: '/Brand/Update'
+    var colorEditModal = new abp.ModalManager({
+        viewUrl: '/Color/Update'
     });
-    brandAddModal.onResult(function (result, response) {
-        if (response.statusText == "success" && response.responseText.showDialogProp == null) {
+
+    colorAddModal.onResult(function (result, response) {
+        if (response.statusText == "success") {
             toastr.options.positionClass = 'toast-top-right';
-            abp.notify.success(L('AddSucces'));
+            abp.notify.success(L('AddSuccess'));
         }
-        // if (response.responseText.showDialogProp.resultStatus==0) {
         _dataTable.ajax.reload();
-        //}
     });
-    brandEditModal.onResult(function (result, response) {
-        if (response.statusText == "success" && response.responseText.showDialogProp == null) {
+
+    colorEditModal.onResult(function (result, response) {
+        if (response.statusText == "success") {
             toastr.options.positionClass = 'toast-top-right';
-            abp.notify.success(L('UpdateSucces'));
+            abp.notify.success(L('UpdateSuccess'));
         }
-        // if (response.responseText.showDialogProp.resultStatus==0) {
         _dataTable.ajax.reload();
-        //}
     });
-    $('#BrandAddButton').click(async function (event) {
-        brandAddModal.open();
+
+    $('#ColorAddButton').click(function () {
+        colorAddModal.open();
     });
-    var _dataTable = $('#BrandTable').DataTable(
+
+    var _dataTable = $('#ColorTable').DataTable(
         abp.libs.datatables.normalizeConfiguration({
             serverSide: true,
             paging: true,
             order: [[1, "asc"]],
             searching: true,
-            ajax: abp.libs.datatables.createAjax(_brandAppService.getList),
+            ajax: abp.libs.datatables.createAjax(_colorAppService.getList),
             columnDefs: [
                 {
                     title: L('Actions'),
                     rowAction: {
-                        items:
-                            [
-                                {
-                                    text: L('Edit'),
-                                    visible: function (data) {
-                                        return abp.auth.isGranted('BrandPermission.Brand.Update');
-                                    },
-                                    action: function (data) {
-                                        brandEditModal.open({
-                                            id: data.record.id,
-                                        });
-                                        ///...
-                                    }
+                        items: [
+                            {
+                                text: L('Edit'),
+                                visible: function (data) {
+                                    return abp.auth.isGranted('ColorPermission.Color.Update');
                                 },
-
-                                {
-                                    text: L('Delete'),
-                                    visible: function (data) {
-                                        return abp.auth.isGranted('BrandPermission.Brand.Delete');
-                                    },
-                                    confirmMessage: function (data) {
-                                        return L(
-                                            'BrandDeletionConfirmationMessage',
-                                            data.record.brand
-                                        );
-                                    },
-                                    action: function (data) {
-                                        toastr.options.positionClass = 'toast-top-right';
-                                        _brandAppService
-                                            .delete(data.record.id)
-                                            .then(function () {
-                                                _dataTable.ajax.reload();
-                                                abp.notify.success(L('DeleteSuccess'));
-                                            });
-                                    },
+                                action: function (data) {
+                                    colorEditModal.open({ id: data.record.id });
                                 }
-                            ]
+                            },
+                            {
+                                text: L('Delete'),
+                                visible: function (data) {
+                                    return abp.auth.isGranted('ColorPermission.Color.Delete');
+                                },
+                                confirmMessage: function (data) {
+                                    return L('ColorDeletionConfirmationMessage', data.record.Name);
+                                },
+                                action: function (data) {
+                                    toastr.options.positionClass = 'toast-top-right';
+                                    _colorAppService.delete(data.record.id).then(function () {
+                                        _dataTable.ajax.reload();
+                                        abp.notify.success(L('DeleteSuccess'));
+                                    });
+                                }
+                            }
+                        ]
                     }
                 },
-               
                 {
-                    title: L('TagName'),
-                    data: "tagName"
+                    title: L('Name'),
+                    data: "Name"
                 }
-
             ]
         })
     );

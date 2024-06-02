@@ -54,6 +54,15 @@ public class RentACarProjectMenuContributor : IMenuContributor
             ).RequirePermissions(RentACarProjectPermissions.Brand.Default)
        );
 
+        context.Menu.AddItem(
+           new ApplicationMenuItem(
+                name: "Menu:Color",
+                displayName: l["Menu:Color"],
+                icon: "fa fa-colors",
+                url: "/Color"
+            ).RequirePermissions(RentACarProjectPermissions.Color.Default)
+       );
+
 
         if (MultiTenancyConsts.IsEnabled)
         {

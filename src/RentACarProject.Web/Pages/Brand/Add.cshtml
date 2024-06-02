@@ -7,10 +7,10 @@
 @{
     Layout = null;
 }
-<form method="post" action="@Url.Page("/Tag/Add")">
+<form method="post" action="@Url.Page("/Brand/Add")">
     @Html.AntiForgeryToken()
     <abp-modal>
-        <abp-modal-header title="@L["TagAdd"].Value"></abp-modal-header>
+        <abp-modal-header title="@L["BrandAdd"].Value"></abp-modal-header>
         <abp-modal-body>
             <abp-input asp-for="CreatedBrandDto.Name"></abp-input>
         </abp-modal-body>

@@ -1,15 +1,15 @@
 var L = abp.localization.getResource('RentACarProject');
 
 $(function () {
-    var _carAppService = novaHaber.appServices.cars.car;
+    var _colorAppService = novaHaber.appServices.colors.color;
 
-    var carAddModal = new abp.ModalManager({
-        viewUrl: '/Cars/Add'
+    var colorAddModal = new abp.ModalManager({
+        viewUrl: '/Color/Add'
     });
-    var carEditModal = new abp.ModalManager({
-        viewUrl: '/Cars/Update'
+    var colorEditModal = new abp.ModalManager({
+        viewUrl: '/Color/Update'
     });
-    carAddModal.onResult(function (result, response) {
+    colorAddModal.onResult(function (result, response) {
         if (response.statusText == "success" && response.responseText.showDialogProp == null) {
             toastr.options.positionClass = 'toast-top-right';
             abp.notify.success(L('AddSucces'));
@@ -18,7 +18,7 @@ $(function () {
         _dataTable.ajax.reload();
         //}
     });
-    carEditModal.onResult(function (result, response) {
+    colorEditModal.onResult(function (result, response) {
         if (response.statusText == "success" && response.responseText.showDialogProp == null) {
             toastr.options.positionClass = 'toast-top-right';
             abp.notify.success(L('UpdateSucces'));
@@ -27,16 +27,16 @@ $(function () {
         _dataTable.ajax.reload();
         //}
     });
-    $('#CarAddButton').click(async function (event) {
-        carAddModal.open();
+    $('#ColorAddButton').click(async function (event) {
+        colorAddModal.open();
     });
-    var _dataTable = $('#CarTable').DataTable(
+    var _dataTable = $('#ColorTable').DataTable(
         abp.libs.datatables.normalizeConfiguration({
             serverSide: true,
             paging: true,
             order: [[1, "asc"]],
             searching: true,
-            ajax: abp.libs.datatables.createAjax(_carAppService.getList),
+            ajax: abp.libs.datatables.createAjax(_colorAppService.getList),
             columnDefs: [
                 {
                     title: L('Actions'),
@@ -46,10 +46,10 @@ $(function () {
                                 {
                                     text: L('Edit'),
                                     visible: function (data) {
-                                        return abp.auth.isGranted('CarPermission.Cars.Update');
+                                        return abp.auth.isGranted('ColorPermission.Color.Update');
                                     },
                                     action: function (data) {
-                                        carEditModal.open({
+                                        colorEditModal.open({
                                             id: data.record.id,
                                         });
                                         ///...
@@ -59,17 +59,17 @@ $(function () {
                                 {
                                     text: L('Delete'),
                                     visible: function (data) {
-                                        return abp.auth.isGranted('CarPermission.Cars.Delete');
+                                        return abp.auth.isGranted('ColorPermission.Color.Delete');
                                     },
                                     confirmMessage: function (data) {
                                         return L(
-                                            'CarDeletionConfirmationMessage',
-                                            data.record.Plate
+                                            'ColorDeletionConfirmationMessage',
+                                            data.record.Name
                                         );
                                     },
                                     action: function (data) {
                                         toastr.options.positionClass = 'toast-top-right';
-                                        _carAppService
+                                        _colorAppService
                                             .delete(data.record.id)
                                             .then(function () {
                                                 _dataTable.ajax.reload();
@@ -82,8 +82,8 @@ $(function () {
                 },
 
                 {
-                    title: L('CarName'),
-                    data: "carName"
+                    title: L('Name'),
+                    data: "Name"
                 }
 
             ]
