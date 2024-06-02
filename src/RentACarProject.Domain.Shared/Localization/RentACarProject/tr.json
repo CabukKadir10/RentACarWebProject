@@ -6,6 +6,30 @@
     "LongWelcomeMessage": "Uygulamaya hoşgeldiniz. Bu, ABP framework'ü üzerine bina edilmiş bir başlangıç projesidir. Daha fazla bilgi için abp.io adresini ziyaret edebilirsiniz.",
     "RentACar": "RentACar",
     "RentACar.Cars": "Cars",
-    "Menu:Cars":  "cars"
+    "CarPermission": "Car izinleri",
+    "BrandPermission": "Brand izinleri",
+    "ColorPermission": "Color izinleri",
+    "FuelPermission": "Fuel izinleri",
+    "ModelPermission": "Model izinleri",
+    "TransmissionPermission": "Transmission izinleri",
+    "CarManagement": "Car Yönetimi",
+    "BrandManagement": "Brand Yönetimi",
+    "ColorManagement": "Color Yönetimi",
+    "FuelManagement": "Fuel Yönetimi",
+    "ModelManagement": "Model Yönetimi",
+    "TransmissionManagement": "Transmission Yönetimi",
+
+    //CAR BAŞLANGIC
+    "Menu:Cars": "Araç Yönetimi",
+    "Menu:CarList": "Araç Listeleme",
+    "Menu:CarsAdd": "Araç Ekleme",
+    "Car": "Etiket",
+    "CarList": "Etiket Listesi",
+    "CarAdd": "Etiket Ekle",
+    "CarUpdate": "Etiket Güncelle",
+    "CarName": "Etiket Adı",
+    "CarDeletionConfirmationMessage": "'{0}' etiketini silmek istediğinizden emin misiniz?",
+    "CarAddSuccess": "Yeni Etiket Eklendi"
+
   }
 }
