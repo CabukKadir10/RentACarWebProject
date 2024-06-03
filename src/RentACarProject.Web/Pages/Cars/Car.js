@@ -1,7 +1,7 @@
 var L = abp.localization.getResource('RentACarProject');
 
 $(function () {
-    var _carAppService = novaHaber.appServices.cars.car;
+    var _carAppService = rentACarProject.cars.car;
 
     var carAddModal = new abp.ModalManager({
         viewUrl: '/Cars/Add'
@@ -10,7 +10,7 @@ $(function () {
         viewUrl: '/Cars/Update'
     });
     carAddModal.onResult(function (result, response) {
-        if (response.statusText == "success" && response.responseText.showDialogProp == null) {
+        if (response.statusText == "success") {
             toastr.options.positionClass = 'toast-top-right';
             abp.notify.success(L('AddSucces'));
         }
@@ -19,7 +19,7 @@ $(function () {
         //}
     });
     carEditModal.onResult(function (result, response) {
-        if (response.statusText == "success" && response.responseText.showDialogProp == null) {
+        if (response.statusText == "success") {
             toastr.options.positionClass = 'toast-top-right';
             abp.notify.success(L('UpdateSucces'));
         }
@@ -46,7 +46,7 @@ $(function () {
                                 {
                                     text: L('Edit'),
                                     visible: function (data) {
-                                        return abp.auth.isGranted('CarPermission.Cars.Update');
+                                        return abp.auth.isGranted('CarsPermissions.Car.Update');
                                     },
                                     action: function (data) {
                                         carEditModal.open({
@@ -59,12 +59,12 @@ $(function () {
                                 {
                                     text: L('Delete'),
                                     visible: function (data) {
-                                        return abp.auth.isGranted('CarPermission.Cars.Delete');
+                                        return abp.auth.isGranted('CarsPermissions.Car.Delete');
                                     },
                                     confirmMessage: function (data) {
                                         return L(
                                             'CarDeletionConfirmationMessage',
-                                            data.record.Plate
+                                            data.record.plate
                                         );
                                     },
                                     action: function (data) {
@@ -82,8 +82,24 @@ $(function () {
                 },
 
                 {
-                    title: L('CarName'),
-                    data: "carName"
+                    title: L('Plate'),
+                    data: "plate"
+                },
+                {
+                    title: L('modelYear'),
+                    data: "modelYear"
+                },
+                {
+                    title: L('ModelId'),
+                    data: "modelId"
+                },
+                {
+                    title: L('CarState'),
+                    data: "carState"
+                },
+                {
+                    title: L('ColorId'),
+                    data: "colorId"
                 }
 
             ]
