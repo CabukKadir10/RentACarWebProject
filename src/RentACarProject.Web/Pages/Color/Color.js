@@ -1,7 +1,7 @@
 var L = abp.localization.getResource('RentACarProject');
 
 $(function () {
-    var _colorAppService = novaHaber.appServices.colors.color;
+    var _colorAppService = rentACarProject.colors.color;
 
     var colorAddModal = new abp.ModalManager({
         viewUrl: '/Color/Add'
@@ -10,7 +10,7 @@ $(function () {
         viewUrl: '/Color/Update'
     });
     colorAddModal.onResult(function (result, response) {
-        if (response.statusText == "success" && response.responseText.showDialogProp == null) {
+        if (response.statusText == "success") {
             toastr.options.positionClass = 'toast-top-right';
             abp.notify.success(L('AddSucces'));
         }
@@ -19,7 +19,7 @@ $(function () {
         //}
     });
     colorEditModal.onResult(function (result, response) {
-        if (response.statusText == "success" && response.responseText.showDialogProp == null) {
+        if (response.statusText == "success") {
             toastr.options.positionClass = 'toast-top-right';
             abp.notify.success(L('UpdateSucces'));
         }
@@ -64,7 +64,7 @@ $(function () {
                                     confirmMessage: function (data) {
                                         return L(
                                             'ColorDeletionConfirmationMessage',
-                                            data.record.Name
+                                            data.record.name
                                         );
                                     },
                                     action: function (data) {
@@ -83,7 +83,7 @@ $(function () {
 
                 {
                     title: L('Name'),
-                    data: "Name"
+                    data: "name"
                 }
 
             ]
