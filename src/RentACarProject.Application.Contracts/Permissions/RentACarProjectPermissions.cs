@@ -6,12 +6,12 @@ public static class RentACarProjectPermissions
 {
     public const string GroupName = "RentACarProject";
 
-    public const string GroupName_Car = "CarsPermissions";
+    public const string GroupName_Car = "CarPermission";
     public const string GroupName_Brand = "BrandPermission";
     public const string GroupName_Color = "ColorPermission";
     public const string GroupName_Fuel = "FuelPermission";
     public const string GroupName_Model = "ModelPermission";
-    public const string GroupName_Transmission = "TransmissionPermissions";
+    public const string GroupName_Transmission = "TransmissionPermission";
 
     public static class Car
     {
