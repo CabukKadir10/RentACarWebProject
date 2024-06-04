@@ -63,6 +63,33 @@ public class RentACarProjectMenuContributor : IMenuContributor
             ).RequirePermissions(RentACarProjectPermissions.Color.Default)
        );
 
+        context.Menu.AddItem(
+           new ApplicationMenuItem(
+                name: "Menu:Model",
+                displayName: l["Menu:Model"],
+                icon: "fa fa-models",
+                url: "/Model"
+            ).RequirePermissions(RentACarProjectPermissions.Model.Default)
+       );
+
+        context.Menu.AddItem(
+           new ApplicationMenuItem(
+                name: "Menu:Fuel",
+                displayName: l["Menu:Fuel"],
+                icon: "fa fa-fuels",
+                url: "/Fuel"
+            ).RequirePermissions(RentACarProjectPermissions.Fuel.Default)
+       );
+
+        context.Menu.AddItem(
+           new ApplicationMenuItem(
+                name: "Menu:Transmission",
+                displayName: l["Menu:Transmission"],
+                icon: "fa fa-transmissions",
+                url: "/Transmission"
+            ).RequirePermissions(RentACarProjectPermissions.Transmission.Default)
+       );
+
 
         if (MultiTenancyConsts.IsEnabled)
         {
