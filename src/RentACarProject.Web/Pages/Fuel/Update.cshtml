@@ -1,0 +1,20 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using RentACarProject.Localization;
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal;
+@inject IHtmlLocalizer<RentACarProjectResource> L
+@model RentACarProject.Web.Pages.Fuel.UpdateModel
+@{
+    Layout = null;
+}
+<form method="post" action="@Url.Page("/Fuel/Update")">
+    @Html.AntiForgeryToken()
+    <abp-modal>
+        <abp-modal-header title="@L["FuelUpdate"].Value"></abp-modal-header>
+        <abp-modal-body>
+            <abp-input asp-for="UpdatedFuelDto.Name"></abp-input>
+            <abp-input asp-for="Id" type="hidden"></abp-input>
+        </abp-modal-body>
+        <abp-modal-footer buttons="@AbpModalButtons.Save | @AbpModalButtons.Cancel"></abp-modal-footer>
+    </abp-modal>
+</form>

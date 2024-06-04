@@ -1,0 +1,42 @@
+﻿@page
+@using Microsoft.AspNetCore.Authorization;
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using RentACarProject.Localization;
+@using RentACarProject.Permissions;
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout;
+@model RentACarProject.Web.Pages.Fuel.IndexModel
+@inject IHtmlLocalizer<RentACarProjectResource> L
+@inject IAuthorizationService Authorization
+@inject IPageLayout PageLayout
+@{
+    PageLayout.Content.Title = L["Menu:Fuel"].Value;
+}
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["FuelList"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-end">
+                @if (await Authorization.IsGrantedAsync(RentACarProjectPermissions.Fuel.Create))
+                {
+                    <abp-button id="FuelAddButton" text="@L["FuelAdd"].Value" icon="plus" button-type="Primary" />
+                }
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="FuelTable">
+            <thead>
+                <tr>
+                    <th width="25%"></th>
+                    <th>@L["Name"]</th>
+                </tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>
+
+@section scripts {
+    <abp-script src="/Pages/Fuel/Fuel.js" />
+}
