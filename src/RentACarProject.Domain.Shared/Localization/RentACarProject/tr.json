@@ -29,7 +29,7 @@
     "CarUpdate": "Car Güncelle",
     "CarName": "Car Adı",
     "CarDeletionConfirmationMessage": "'{0}' Car ı silmek istediğinizden emin misiniz?",
-    "CarAddSuccess": "Yeni Etiket Eklendi",
+    "CarAddSuccess": "Yeni Car Eklendi",
 
     //Brand
     "Menu:Brand": "Brand Yönetimi",
@@ -47,7 +47,6 @@
     "UpdateSuccess": "başarıyla güncellendi",
 
     //Color
-    //Brand
     "Menu:Color": "Color Yönetimi",
     "Menu:ColorList": "Color Listeleme",
     "Menu:ColorAdd": "Color Ekleme",
@@ -62,7 +61,43 @@
 
     "Enum:CarState.Available": "Available",
     "Enum:CarState.Rented": "Rented",
-    "Enum:CarState.Maintenance": "Maintenance"
+    "Enum:CarState.Maintenance": "Maintenance",
+
+    //model
+    "Menu:Model": "Model Yönetimi",
+    "Menu:ModelList": "Model Listeleme",
+    "Menu:ModelAdd": "Model Ekleme",
+    "Model": "Model",
+    "ModelList": "Model Listesi",
+    "ModelAdd": "Model Ekle",
+    "ModelUpdate": "Model Güncelle",
+    "ModelName": "Model Adı",
+    "ModelDeletionConfirmationMessage": "'{0}' Model ı silmek istediğinizden emin misiniz?",
+    "ModelAddSuccess": "Yeni Model Eklendi",
+
+    //fuel
+    "Menu:Fuel": "Fuel Yönetimi",
+    "Menu:FuelList": "Fuel Listeleme",
+    "Menu:FuelAdd": "Fuel Ekleme",
+    "Fuel": "Fuel",
+    "FuelList": "Fuel Listesi",
+    "FuelAdd": "Fuel Ekle",
+    "FuelUpdate": "Fuel Güncelle",
+    "FuelName": "Fuel Adı",
+    "FuelDeletionConfirmationMessage": "'{0}' Fuel ı silmek istediğinizden emin misiniz?",
+    "FuelAddSuccess": "Yeni Fuel Eklendi",
+
+    //Transmission
+    "Menu:Transmission": "Transmission Yönetimi",
+    "Menu:TransmissionList": "Transmission Listeleme",
+    "Menu:TransmissionAdd": "Transmission Ekleme",
+    "Transmission": "Transmission",
+    "TransmissionList": "Transmission Listesi",
+    "TransmissionAdd": "Transmission Ekle",
+    "TransmissionUpdate": "Transmission Güncelle",
+    "TransmissionName": "Transmission Adı",
+    "TransmissionDeletionConfirmationMessage": "'{0}' Transmission ı silmek istediğinizden emin misiniz?",
+    "TransmissionAddSuccess": "Yeni Transmission Eklendi"
 
   }
 }
