@@ -1,0 +1,42 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using RentACarProject.Localization;
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal;
+@model RentACarProject.Web.Pages.Model.UpdateModel
+@inject IHtmlLocalizer<RentACarProjectResource> L
+@{
+    Layout = null;
+}
+
+
+<form method="post" action="@Url.Page("/Model/Update")">
+    @Html.AntiForgeryToken()
+    <abp-modal>
+        <abp-modal-header title="@L["ModelUpdate"].Value"></abp-modal-header>
+        <abp-modal-body>
+            <abp-input asp-for="UpdatedModelDto.Name"></abp-input>
+            <abp-input asp-for="Id" type="hidden"></abp-input>
+        </abp-modal-body>
+        <abp-modal-body>
+            <abp-input asp-for="UpdatedModelDto.DailyPrice"></abp-input>
+            <abp-input asp-for="Id" type="hidden"></abp-input>
+        </abp-modal-body>
+        <abp-modal-body>
+            <abp-input asp-for="UpdatedModelDto.ImageUrl"></abp-input>
+            <abp-input asp-for="Id" type="hidden"></abp-input>
+        </abp-modal-body>
+        <abp-modal-body>
+            <abp-input asp-for="UpdatedModelDto.BrandId"></abp-input>
+            <abp-input asp-for="Id" type="hidden"></abp-input>
+        </abp-modal-body>
+        <abp-modal-body>
+            <abp-input asp-for="UpdatedModelDto.FuelId"></abp-input>
+            <abp-input asp-for="Id" type="hidden"></abp-input>
+        </abp-modal-body>
+        <abp-modal-body>
+            <abp-input asp-for="UpdatedModelDto.TransmissionId"></abp-input>
+            <abp-input asp-for="Id" type="hidden"></abp-input>
+        </abp-modal-body>
+        <abp-modal-footer buttons="@AbpModalButtons.Save | @AbpModalButtons.Cancel"></abp-modal-footer>
+    </abp-modal>
+</form>

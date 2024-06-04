@@ -1,0 +1,52 @@
+﻿@page
+@using Microsoft.AspNetCore.Authorization;
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using RentACarProject.Localization;
+@using RentACarProject.Permissions;
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout;
+@model RentACarProject.Web.Pages.Model.IndexModel
+@inject IHtmlLocalizer<RentACarProjectResource> L
+@inject IAuthorizationService Authorization
+@inject IPageLayout PageLayout
+@{
+    PageLayout.Content.Title = L["Menu:Model"].Value;
+}
+@Html.AntiForgeryToken()
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["ModelList"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-end">
+                @if (await Authorization.IsGrantedAsync(RentACarProjectPermissions.Model.Create))//Yetkiye Bağlayabiliriz
+                {
+                    <abp-button id="ModelAddButton"
+                                text="@L["ModelAdd"].Value"
+                                icon="plus"
+                                button-type="Primary" />
+                }
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="ModelTable">
+            <thead>
+                <tr>
+                    <th width="25%"></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>
+
+@section scripts {
+    <abp-script src="/Pages/Model/Model.js" />
+}

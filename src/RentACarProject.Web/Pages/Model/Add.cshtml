@@ -1,0 +1,35 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using RentACarProject.Localization;
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal;
+@model RentACarProject.Web.Pages.Model.AddModel
+@inject IHtmlLocalizer<RentACarProjectResource> L
+@{
+    Layout = null;
+}
+<form method="post" action="@Url.Page("/Model/Add")">
+    @Html.AntiForgeryToken()
+    <abp-modal>
+        <abp-modal-header title="@L["ModelAdd"].Value"></abp-modal-header>
+        <abp-modal-body>
+            <abp-select asp-for="CreatedModelDto.Name"></abp-select>
+        </abp-modal-body>
+        <abp-modal-body>
+            <abp-input asp-for="CreatedModelDto.BrandId"></abp-input>
+        </abp-modal-body>
+        <abp-modal-body>
+            <abp-input asp-for="CreatedModelDto.FuelId"></abp-input>
+        </abp-modal-body>
+        <abp-modal-body>
+            <abp-input asp-for="CreatedModelDto.DailyPrice"></abp-input>
+        </abp-modal-body>
+        <abp-modal-body>
+            <abp-input asp-for="CreatedModelDto.TransmissionId"></abp-input>
+        </abp-modal-body>
+        <abp-modal-body>
+            <abp-input asp-for="CreatedModelDto.ImageUrl"></abp-input>
+        </abp-modal-body>
+
+        <abp-modal-footer buttons="@AbpModalButtons.Save | @AbpModalButtons.Cancel"></abp-modal-footer>
+    </abp-modal>
+</form>
