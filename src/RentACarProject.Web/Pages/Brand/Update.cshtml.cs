@@ -27,17 +27,17 @@ namespace RentACarProject.Web.Pages.Brand
         public async Task OnGet(int id)
         {
             UpdatedBrandDto = new UpdatedBrandDto();
-            var tagDto = await _brandAppService.GetAsync(id);
-            Id = tagDto.Id;
-            UpdatedBrandDto.Name = tagDto.Name;
+            var brandDto = await _brandAppService.GetAsync(id);
+            Id = brandDto.Id;
+            UpdatedBrandDto.Name = brandDto.Name;
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
 
-            var tagResult = await _brandAppService.UpdateAsync(Id, UpdatedBrandDto);
+            var brandResult = await _brandAppService.UpdateAsync(Id, UpdatedBrandDto);
 
-            return new JsonResult(tagResult);
+            return new JsonResult(brandResult);
         }
     }
 }
