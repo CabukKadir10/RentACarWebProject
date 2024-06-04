@@ -9,10 +9,10 @@
 }
 
 
-<form method="post" action="@Url.Page("/Tag/Update")">
+<form method="post" action="@Url.Page("/Cars/Update")">
     @Html.AntiForgeryToken()
     <abp-modal>
-        <abp-modal-header title="@L["TagUpdate"].Value"></abp-modal-header>
+        <abp-modal-header title="@L["CarsUpdate"].Value"></abp-modal-header>
         <abp-modal-body>
             <abp-input asp-for="UpdatedCarDto.Plate"></abp-input>
             <abp-input asp-for="Id" type="hidden"></abp-input>

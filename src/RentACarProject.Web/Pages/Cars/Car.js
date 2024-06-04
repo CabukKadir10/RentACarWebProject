@@ -46,7 +46,7 @@ $(function () {
                                 {
                                     text: L('Edit'),
                                     visible: function (data) {
-                                        return abp.auth.isGranted('CarsPermissions.Car.Update');
+                                        return abp.auth.isGranted('CarPermission.Car.Update');
                                     },
                                     action: function (data) {
                                         carEditModal.open({
@@ -59,7 +59,7 @@ $(function () {
                                 {
                                     text: L('Delete'),
                                     visible: function (data) {
-                                        return abp.auth.isGranted('CarsPermissions.Car.Delete');
+                                        return abp.auth.isGranted('CarPermission.Car.Delete');
                                     },
                                     confirmMessage: function (data) {
                                         return L(
