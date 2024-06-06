@@ -1,5 +1,6 @@
 ﻿using RentACarProject.Entities.Colors;
 using RentACarProject.Entities.Models;
+using RentACarProject.Entities.RentAls;
 using RentACarProject.Enums;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace RentACarProject.Entities.Cars
     {
         public Car()
         {
+            Rentals = new HashSet<Rental>();
         }
 
         public Car(int id, int modelId, string plate, short modelYear, int colorId, CarState carState) : this()
@@ -36,5 +38,6 @@ namespace RentACarProject.Entities.Cars
         // Navigation Properties
         public virtual Color Color { get; set; }
         public virtual Model Model { get; set; }
+        public virtual ICollection<Rental> Rentals { get; set; }
     }
 }
