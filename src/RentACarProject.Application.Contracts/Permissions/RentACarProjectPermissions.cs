@@ -12,7 +12,18 @@ public static class RentACarProjectPermissions
     public const string GroupName_Fuel = "FuelPermission";
     public const string GroupName_Model = "ModelPermission";
     public const string GroupName_Transmission = "TransmissionPermission";
+    public const string GroupName_Rental = "RentalPermission";
 
+
+    public static class Rental
+    {
+        public const string Default = GroupName_Rental + ".Rental";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+        public const string Get = Default + ".Get";
+        public const string List = Default + ".List";
+    }
     public static class Car
     {
         public const string Default = GroupName_Car + ".Car";

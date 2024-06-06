@@ -12,6 +12,7 @@ public class RentACarProjectPermissionDefinitionProvider : PermissionDefinitionP
         //Define your own permissions here. Example:
         //myGroup.AddPermission(RentACarProjectPermissions.MyPermission1, L("Permission:MyPermission1"));
         var cargroup = context.AddGroup(RentACarProjectPermissions.GroupName_Car, L("CarPermission"));
+        var rentalgroup = context.AddGroup(RentACarProjectPermissions.GroupName_Rental, L("RentalPermission"));
         var brandgroup = context.AddGroup(RentACarProjectPermissions.GroupName_Brand, L("BrandPermission"));
         var colorgroup = context.AddGroup(RentACarProjectPermissions.GroupName_Color, L("ColorPermission"));
         var fuelgroup = context.AddGroup(RentACarProjectPermissions.GroupName_Fuel, L("FuelPermission"));
@@ -26,6 +27,7 @@ public class RentACarProjectPermissionDefinitionProvider : PermissionDefinitionP
         Define_Model_Group(modelgroup);
         Define_Color_Group(colorgroup);
         Define_Brand_Group(brandgroup);
+        Define_Rental_Group(rentalgroup);
     }
 
     private void Define_Transmission_Group(PermissionGroupDefinition definition)
@@ -39,12 +41,21 @@ public class RentACarProjectPermissionDefinitionProvider : PermissionDefinitionP
     }
     private void Define_Model_Group(PermissionGroupDefinition definition)
     {
-        var modelPermissions = definition.AddPermission(RentACarProjectPermissions.Model.Default, L("CarManagment"));
+        var modelPermissions = definition.AddPermission(RentACarProjectPermissions.Model.Default, L("ModelManagment"));
         modelPermissions.AddChild(RentACarProjectPermissions.Model.Create, L("Create"));
         modelPermissions.AddChild(RentACarProjectPermissions.Model.Update, L("Update"));
         modelPermissions.AddChild(RentACarProjectPermissions.Model.Delete, L("Delete"));
         modelPermissions.AddChild(RentACarProjectPermissions.Model.Get, L("Get"));
         modelPermissions.AddChild(RentACarProjectPermissions.Model.List, L("List"));
+    }
+    private void Define_Rental_Group(PermissionGroupDefinition definition)
+    {
+        var rentalPermissions = definition.AddPermission(RentACarProjectPermissions.Rental.Default, L("RentalManagment"));
+        rentalPermissions.AddChild(RentACarProjectPermissions.Rental.Create, L("Create"));
+        rentalPermissions.AddChild(RentACarProjectPermissions.Rental.Update, L("Update"));
+        rentalPermissions.AddChild(RentACarProjectPermissions.Rental.Delete, L("Delete"));
+        rentalPermissions.AddChild(RentACarProjectPermissions.Rental.Get, L("Get"));
+        rentalPermissions.AddChild(RentACarProjectPermissions.Rental.List, L("List"));
     }
     private void Define_Fuel_Group(PermissionGroupDefinition definition)
     {
