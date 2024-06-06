@@ -13,8 +13,8 @@ using Volo.Abp.EntityFrameworkCore;
 namespace RentACarProject.Migrations
 {
     [DbContext(typeof(RentACarProjectDbContext))]
-    [Migration("20240531230329_crateDatabaseForRentCar")]
-    partial class crateDatabaseForRentCar
+    [Migration("20240605133015_CreateDatabase")]
+    partial class CreateDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -601,6 +601,81 @@ namespace RentACarProject.Migrations
                             ImageUrl = "",
                             Name = "A7",
                             TransmissionId = 2
+                        });
+                });
+
+            modelBuilder.Entity("RentACarProject.Entities.RentAls.Rental", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("Id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("RentDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("RentDate")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<DateTime?>("ReturnDate")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("ReturnDate");
+
+                    b.Property<int>("TotalPrice")
+                        .HasColumnType("integer")
+                        .HasColumnName("TotalPrice");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarId");
+
+                    b.ToTable("Rental", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CarId = 1,
+                            RentDate = new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReturnDate = new DateTime(2024, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TotalPrice = 100
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CarId = 2,
+                            RentDate = new DateTime(2024, 6, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReturnDate = new DateTime(2024, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TotalPrice = 200
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CarId = 3,
+                            RentDate = new DateTime(2024, 6, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReturnDate = new DateTime(2024, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TotalPrice = 150
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CarId = 4,
+                            RentDate = new DateTime(2024, 6, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReturnDate = new DateTime(2024, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TotalPrice = 180
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CarId = 5,
+                            RentDate = new DateTime(2024, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReturnDate = new DateTime(2024, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TotalPrice = 220
                         });
                 });
 
@@ -2416,6 +2491,17 @@ namespace RentACarProject.Migrations
                     b.Navigation("Transmission");
                 });
 
+            modelBuilder.Entity("RentACarProject.Entities.RentAls.Rental", b =>
+                {
+                    b.HasOne("RentACarProject.Entities.Cars.Car", "Car")
+                        .WithMany("Rentals")
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
+                });
+
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLogAction", b =>
                 {
                     b.HasOne("Volo.Abp.AuditLogging.AuditLog", null)
@@ -2561,6 +2647,11 @@ namespace RentACarProject.Migrations
             modelBuilder.Entity("RentACarProject.Entities.Brands.Brand", b =>
                 {
                     b.Navigation("Models");
+                });
+
+            modelBuilder.Entity("RentACarProject.Entities.Cars.Car", b =>
+                {
+                    b.Navigation("Rentals");
                 });
 
             modelBuilder.Entity("RentACarProject.Entities.Colors.Color", b =>

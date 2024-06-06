@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace RentACarProject.Migrations
 {
     /// <inheritdoc />
-    public partial class crateDatabaseForRentCar : Migration
+    public partial class CreateDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -901,6 +901,28 @@ namespace RentACarProject.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Rental",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CarId = table.Column<int>(type: "integer", nullable: false),
+                    RentDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    ReturnDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    TotalPrice = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rental", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Rental_Car_CarId",
+                        column: x => x.CarId,
+                        principalTable: "Car",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Brand",
                 columns: new[] { "Id", "Name" },
@@ -1017,6 +1039,18 @@ namespace RentACarProject.Migrations
                     { 4, 0, 4, 4, (short)2004, "35TR60" },
                     { 5, 1, 5, 5, (short)2005, "55TR60" },
                     { 6, 2, 6, 6, (short)2006, "66TR60" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Rental",
+                columns: new[] { "Id", "CarId", "RentDate", "ReturnDate", "TotalPrice" },
+                values: new object[,]
+                {
+                    { 1, 1, new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 100 },
+                    { 2, 2, new DateTime(2024, 6, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 200 },
+                    { 3, 3, new DateTime(2024, 6, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 150 },
+                    { 4, 4, new DateTime(2024, 6, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 180 },
+                    { 5, 5, new DateTime(2024, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 220 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -1267,6 +1301,11 @@ namespace RentACarProject.Migrations
                 name: "IX_OpenIddictTokens_ReferenceId",
                 table: "OpenIddictTokens",
                 column: "ReferenceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rental_CarId",
+                table: "Rental",
+                column: "CarId");
         }
 
         /// <inheritdoc />
@@ -1342,13 +1381,13 @@ namespace RentACarProject.Migrations
                 name: "AbpUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Car");
-
-            migrationBuilder.DropTable(
                 name: "OpenIddictScopes");
 
             migrationBuilder.DropTable(
                 name: "OpenIddictTokens");
+
+            migrationBuilder.DropTable(
+                name: "Rental");
 
             migrationBuilder.DropTable(
                 name: "AbpEntityChanges");
@@ -1366,16 +1405,22 @@ namespace RentACarProject.Migrations
                 name: "AbpUsers");
 
             migrationBuilder.DropTable(
+                name: "OpenIddictAuthorizations");
+
+            migrationBuilder.DropTable(
+                name: "Car");
+
+            migrationBuilder.DropTable(
+                name: "AbpAuditLogs");
+
+            migrationBuilder.DropTable(
+                name: "OpenIddictApplications");
+
+            migrationBuilder.DropTable(
                 name: "Color");
 
             migrationBuilder.DropTable(
                 name: "Model");
-
-            migrationBuilder.DropTable(
-                name: "OpenIddictAuthorizations");
-
-            migrationBuilder.DropTable(
-                name: "AbpAuditLogs");
 
             migrationBuilder.DropTable(
                 name: "Brand");
@@ -1385,9 +1430,6 @@ namespace RentACarProject.Migrations
 
             migrationBuilder.DropTable(
                 name: "Transmission");
-
-            migrationBuilder.DropTable(
-                name: "OpenIddictApplications");
         }
     }
 }
