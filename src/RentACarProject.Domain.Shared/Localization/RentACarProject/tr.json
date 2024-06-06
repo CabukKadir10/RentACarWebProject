@@ -3,7 +3,7 @@
   "texts": {
     "Menu:Home": "Ana sayfa",
     "Welcome": "Hoşgeldiniz",
-    "LongWelcomeMessage": "Uygulamaya hoşgeldiniz. Bu, ABP framework'ü üzerine bina edilmiş bir başlangıç projesidir. Daha fazla bilgi için abp.io adresini ziyaret edebilirsiniz.",
+    "LongWelcomeMessage": "Araç Kiralama Uygulamamıza hoşgeldiniz. Bu, ABP framework'ü üzerine bina edilmiş bir araç kiralama projesidir.",
     "RentACar": "RentACar",
     "RentACar.Cars": "Cars",
     "CarPermission": "Car izinleri",
@@ -11,6 +11,7 @@
     "ColorPermission": "Color izinleri",
     "FuelPermission": "Fuel izinleri",
     "ModelPermission": "Model izinleri",
+    "RentalPermission": "Kiralama izinleri",
     "TransmissionPermission": "Transmission izinleri",
     "CarManagement": "Car Yönetimi",
     "BrandManagement": "Brand Yönetimi",
@@ -18,6 +19,7 @@
     "FuelManagement": "Fuel Yönetimi",
     "ModelManagement": "Model Yönetimi",
     "TransmissionManagement": "Transmission Yönetimi",
+    "RentalManagement": "Kiralama Yönetimi",
 
     //CAR BAŞLANGIC
     "Menu:Cars": "Araç Yönetimi",
@@ -59,9 +61,9 @@
     "ColorAddSuccess": "Yeni Color Eklendi",
 
 
-    "Enum:CarState.Available": "Available",
-    "Enum:CarState.Rented": "Rented",
-    "Enum:CarState.Maintenance": "Maintenance",
+    "Enum:CarState.Available": "Mevcut",
+    "Enum:CarState.Rented": "Kiralandı",
+    "Enum:CarState.Maintenance": "Bakımda",
 
     //model
     "Menu:Model": "Model Yönetimi",
@@ -97,7 +99,19 @@
     "TransmissionUpdate": "Transmission Güncelle",
     "TransmissionName": "Transmission Adı",
     "TransmissionDeletionConfirmationMessage": "'{0}' Transmission ı silmek istediğinizden emin misiniz?",
-    "TransmissionAddSuccess": "Yeni Transmission Eklendi"
+    "TransmissionAddSuccess": "Yeni Transmission Eklendi",
+
+    //Rental
+    "Menu:Rental": "Kiralama Yönetimi",
+    "Menu:RentalList": "Kiralama Listeleme",
+    "Menu:RentalAdd": "Kiralama Ekleme",
+    "Rental": "Kiralama",
+    "RentalList": "Kiralama Listesi",
+    "RentalAdd": "Kiralama Ekle",
+    "RentalUpdate": "Kiralama Güncelle",
+    "RentalName": "Kiralama Adı",
+    "RentalDeletionConfirmationMessage": "'{0}' Kiralama ı silmek istediğinizden emin misiniz?",
+    "RentalAddSuccess": "Yeni Kiralama Eklendi"
 
   }
 }
