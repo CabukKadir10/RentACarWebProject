@@ -7,9 +7,11 @@ using RentACarProject.Entities.Cars;
 using RentACarProject.Entities.Colors;
 using RentACarProject.Entities.Fuels;
 using RentACarProject.Entities.Models;
+using RentACarProject.Entities.RentAls;
 using RentACarProject.Entities.Transmissions;
 using RentACarProject.Fuels.Dtos;
 using RentACarProject.Models.Dtos;
+using RentACarProject.Rentals.Dtos;
 using RentACarProject.Transmissions.Dtos;
 
 namespace RentACarProject;
@@ -41,6 +43,10 @@ public class RentACarProjectApplicationAutoMapperProfile : Profile
         CreateMap<Model, ModelDto>().ReverseMap();
         CreateMap<Model, CreatedModelDto>().ReverseMap();
         CreateMap<Model, UpdatedModelDto>().ReverseMap();
+
+        CreateMap<Rental, RentalDto>().ReverseMap();
+        CreateMap<Rental, CreatedRentalDto>().ReverseMap();
+        CreateMap<Rental, UpdatedRentalDto>().ReverseMap();
 
         CreateMap<Transmission, TransmissionDto>().ReverseMap();
         CreateMap<Transmission, CreatedTransmissionDto>().ReverseMap();
