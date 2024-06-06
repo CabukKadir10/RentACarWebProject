@@ -1,11 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using RentACarProject.Entities.Brands;
 using RentACarProject.Entities.Cars;
 using RentACarProject.Entities.Colors;
 using RentACarProject.Entities.Fuels;
 using RentACarProject.Entities.Models;
+using RentACarProject.Entities.RentAls;
 using RentACarProject.Entities.Transmissions;
 using RentACarProject.Enums;
+using System;
 using System.ComponentModel;
 using System.Reflection.Emit;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
@@ -39,6 +42,7 @@ public class RentACarProjectDbContext :
     public DbSet<Fuel> Fuels { get; set; }
     public DbSet<Model> Models { get; set; }
     public DbSet<Transmission> Transmissions { get; set; }
+    public DbSet<Rental> Rentals { get; set; }
 
     #region Entities from the modules
 
@@ -98,6 +102,11 @@ public class RentACarProjectDbContext :
         //    //...
         //});
 
+        //builder.Entity<Rental>()
+        //   .HasOne(r => r.Car)
+        //   .WithMany(c => c.Rentals)
+        //   .HasForeignKey(r => r.CarId);
+
         builder.Entity<Brand>(b =>
         {
             b.ToTable("Brand").HasKey(x => x.Id);
@@ -121,6 +130,7 @@ public class RentACarProjectDbContext :
 
             c.HasOne(x => x.Model).WithMany(x => x.Cars).HasForeignKey(x => x.ModelId);
             c.HasOne(x => x.Color).WithMany(x => x.Cars).HasForeignKey(x => x.ColorId);
+            
         });
 
         builder.Entity<Color>(c =>
@@ -161,6 +171,17 @@ public class RentACarProjectDbContext :
             t.HasMany(x => x.Models).WithOne(x => x.Transmission).HasForeignKey(x => x.TransmissionId);
         });
 
+        builder.Entity<Rental>(r =>
+        {
+            r.ToTable("Rental").HasKey(x => x.Id); // Corrected table name
+            r.Property(x => x.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            r.Property(x => x.RentDate).HasColumnName("RentDate").HasDefaultValueSql("CURRENT_TIMESTAMP"); // Use PostgreSQL's CURRENT_TIMESTAMP as the default value
+            r.Property(x => x.ReturnDate).HasColumnName("ReturnDate");
+            r.Property(x => x.TotalPrice).HasColumnName("TotalPrice").IsRequired();
+
+            r.HasOne(a => a.Car).WithMany(a => a.Rentals).HasForeignKey(x => x.CarId);
+        });
+
 
         // Seed data
         // Brand
@@ -172,6 +193,8 @@ public class RentACarProjectDbContext :
             new Brand(5, "Volvo"),
             new Brand(6, "Ford")
         );
+
+        
         // Color
         builder.Entity<Color>().HasData(
             new Color(1, "Black"),
@@ -254,5 +277,14 @@ public class RentACarProjectDbContext :
             new Car(5, 5, "55TR60", 2005, 5, CarState.Rented),
             new Car(6, 6, "66TR60", 2006, 6, CarState.Maintenance)
             );
+
+       // rental
+        builder.Entity<Rental>().HasData(
+            new Rental(1, 1, new DateTime(2024, 6, 1), new DateTime(2024, 6, 5), 100),
+            new Rental(2, 2, new DateTime(2024, 6, 2), new DateTime(2024, 6, 5), 200),
+            new Rental(3, 3, new DateTime(2024, 6, 3), new DateTime(2024, 6, 5), 150),
+            new Rental(4, 4, new DateTime(2024, 6, 4), new DateTime(2024, 6, 5), 180),
+            new Rental(5, 5, new DateTime(2024, 6, 5), new DateTime(2024, 6, 5), 220)
+        );
     }
 }
