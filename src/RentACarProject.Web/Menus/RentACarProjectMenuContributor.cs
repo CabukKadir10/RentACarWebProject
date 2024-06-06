@@ -90,6 +90,15 @@ public class RentACarProjectMenuContributor : IMenuContributor
             ).RequirePermissions(RentACarProjectPermissions.Transmission.Default)
        );
 
+        context.Menu.AddItem(
+           new ApplicationMenuItem(
+                name: "Menu:Rental",
+                displayName: l["Menu:Rental"],
+                icon: "fa fa-rentals",
+                url: "/Rental"
+            ).RequirePermissions(RentACarProjectPermissions.Rental.Default)
+       );
+
 
         if (MultiTenancyConsts.IsEnabled)
         {

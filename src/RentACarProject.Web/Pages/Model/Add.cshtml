@@ -12,7 +12,10 @@
     <abp-modal>
         <abp-modal-header title="@L["ModelAdd"].Value"></abp-modal-header>
         <abp-modal-body>
-            <abp-select asp-for="CreatedModelDto.Name"></abp-select>
+            <abp-input asp-for="CreatedModelDto.Name"></abp-input>
+        </abp-modal-body>
+        <abp-modal-body>
+            <abp-input asp-for="CreatedModelDto.DailyPrice"></abp-input>
         </abp-modal-body>
         <abp-modal-body>
             <abp-input asp-for="CreatedModelDto.BrandId"></abp-input>
@@ -21,15 +24,11 @@
             <abp-input asp-for="CreatedModelDto.FuelId"></abp-input>
         </abp-modal-body>
         <abp-modal-body>
-            <abp-input asp-for="CreatedModelDto.DailyPrice"></abp-input>
-        </abp-modal-body>
-        <abp-modal-body>
             <abp-input asp-for="CreatedModelDto.TransmissionId"></abp-input>
         </abp-modal-body>
         <abp-modal-body>
             <abp-input asp-for="CreatedModelDto.ImageUrl"></abp-input>
         </abp-modal-body>
-
         <abp-modal-footer buttons="@AbpModalButtons.Save | @AbpModalButtons.Cancel"></abp-modal-footer>
     </abp-modal>
 </form>
